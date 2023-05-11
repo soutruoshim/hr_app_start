@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
+import 'package:hr_app/utill/color_resources.dart';
 
 import '../../../helper/check_device.dart';
 import '../../../utill/dimensions.dart';
@@ -11,6 +12,7 @@ class AuthScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorResources.MAIN_COLOR,
       body: Container(
         padding: Device.get().isTablet ? EdgeInsets.only(right: MediaQuery.of(context).size.height / 2, left: MediaQuery.of(context).size.height / 2):EdgeInsets.only(),
         child: SingleChildScrollView(
@@ -51,7 +53,7 @@ class AuthScreen extends StatelessWidget{
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                   child: Text("Login",
-                      style: titilliumBold.copyWith(fontSize: Dimensions.FONT_SIZE_OVER_LARGE))),
+                      style: titilliumBold.copyWith(fontSize: Dimensions.FONT_SIZE_OVER_LARGE, color: Colors.orangeAccent))),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT,vertical: Dimensions.PADDING_SIZE_SMALL),
                 child: Text("Management store application",

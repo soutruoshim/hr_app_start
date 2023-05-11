@@ -1,6 +1,4 @@
-import 'package:hr_app/data/model/body/store_model_request.dart';
 import 'package:flutter/material.dart';
-
 import '../data/model/response/base/api_response.dart';
 import '../data/model/response/config_model.dart';
 import '../data/model/response/store_model.dart';
@@ -11,8 +9,7 @@ class SplashProvider extends ChangeNotifier {
   final SplashRepo splashRepo;
 
   SplashProvider({required this.splashRepo});
-
-   StoreModel _storeModel = StoreModel();
+  StoreModel _storeModel = StoreModel();
 
   late ConfigModel _configModel;
   late BaseUrls _baseUrls;
@@ -24,6 +21,7 @@ class SplashProvider extends ChangeNotifier {
   late List<String> _unitList;
   int _unitIndex = 0;
   int _colorIndex = 0;
+
 
   List<String> get unitList => _unitList;
 
@@ -57,14 +55,12 @@ class SplashProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  Future<bool> initStores(BuildContext context, StoreModelRequest storeModelRequest) async {
+  Future<bool> initConfig(BuildContext context) async {
     _hasConnection = true;
-    //print("data " + storeModelRequest.toJson().toString());
-    ApiResponse apiResponse = await splashRepo.getStoreList(storeModelRequest);
+    ApiResponse apiResponse = await splashRepo.getConfig();
     bool isSuccess;
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _storeModel = StoreModel.fromJson(apiResponse.response!.data);
-      //print(apiResponse.response!.data);
       isSuccess = true;
     } else {
       isSuccess = false;
@@ -83,16 +79,6 @@ class SplashProvider extends ChangeNotifier {
     _firstTimeConnectionCheck = isChecked;
   }
 
-  void setShippingType(int index) {
-    splashRepo.setShippingType(_shippingTypeList[index]);
-    notifyListeners();
-  }
-
-  void initShippingType(String type) {
-    _shippingIndex = _shippingTypeList.indexOf(type);
-    notifyListeners();
-  }
-
   void initSharedPrefData() {
     splashRepo.initSharedData();
   }
@@ -101,17 +87,4 @@ class SplashProvider extends ChangeNotifier {
     _fromSetting = isSetting;
   }
 
-  void initShippingTypeList(BuildContext context, String type) async {
-    ApiResponse apiResponse =
-        await splashRepo.getShippingTypeList(context, type);
-    if (apiResponse.response != null &&
-        apiResponse.response!.statusCode == 200) {
-      _shippingTypeList.clear();
-      _shippingTypeList = [];
-      _shippingTypeList.addAll(apiResponse.response!.data);
-    } else {
-      ApiChecker.checkApi(context, apiResponse);
-    }
-    notifyListeners();
-  }
 }

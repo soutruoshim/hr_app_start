@@ -4,7 +4,6 @@ import 'package:hr_app/data/model/response/menu_model.dart';
 import 'package:hr_app/provider/product_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:provider/provider.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
@@ -13,7 +12,6 @@ import '../../../data/model/body/login_model_info.dart';
 import '../../../data/model/response/store_model.dart';
 import '../../../helper/security_helper.dart';
 import '../../../helper/user_login_info.dart';
-import '../../../provider/auth_provider.dart';
 import '../../../provider/splash_provider.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/color_resources.dart';
@@ -232,7 +230,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                             dev_kit: AppConstants.dev_kid
                         );
 
-                        final String userInfo = Provider.of<AuthProvider>(context,listen: false).getUserInfo();
+                        final String userInfo = "";
+
                         Map<String, dynamic> jsonUserInfo = jsonDecode(userInfo);
                         var userModelInfo = LoginModelInfo.fromJson(jsonUserInfo);
 
@@ -248,7 +247,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                                 foodcode: menu.linkedCode,
                                 status: menu.status == "3"? "2":"3",
                                 dataEncryption: data_enc_menu
-                            ));
+                        ));
+
                         MenuModelRequest menuModelRequest = MenuModelRequest(devKid: AppConstants.dev_kid, function: AppConstants.store_app_function, storeappFunction: AppConstants.store_app_function_check_all_menu_status, datas: DatasMenuRequest(dataEncryption: data_enc_menu,storeid: userModelInfo.storeId, func: AppConstants.func_type));
                         //pd.show(max: 90, msg: 'Please waiting...');
                         showDialog(

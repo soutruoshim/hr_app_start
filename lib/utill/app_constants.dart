@@ -2,9 +2,19 @@ class AppConstants {
   static const String APP_NAME = 'Brown Store App';
   static const String APP_VERSION = '1.0';
   static const String COMPANY_NAME = 'Brown';
+
   static const String BASE_URL = 'https://gtest.www.browncoffee.com.kh';
   //static const String BASE_URL = 'https://www.browncoffee.com.kh';
   static const String STORES_URI = '/Client_API/V4/?access';
+  static const String CONFIG_URI = '/api/v1/config';
+  static const String LOGIN_URI = '/api/v3/seller/auth/login';
+  static const String FORGET_PASSWORD_URI = '/api/v3/seller/auth/forgot-password';
+  static const String RESET_PASSWORD_URI = '/api/v3/seller/auth/reset-password';
+  static const String VERIFY_OTP_URI = '/api/v3/seller/auth/verify-otp';
+  static const String TOPIC = 'hr_app_srhdp';
+  static const String TOKEN_URI = '/api/v3/seller/cm-firebase-token';
+  static const String REGISTRATION = '/api/v3/seller/registration';
+
 
   static const String PENDING = 'pending';
   static const String CONFIRMED = 'confirmed';

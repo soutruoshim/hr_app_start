@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../provider/auth_provider.dart';
 
 LoginModelInfo getLoginInfo(BuildContext context){
-  final String userInfo = Provider.of<AuthProvider>(context,listen: false).getUserInfo();
+  final String userInfo = "";
   Map<String, dynamic> jsonUserInfo = jsonDecode(userInfo);
   var userModelInfo = LoginModelInfo.fromJson(jsonUserInfo);
   return userModelInfo;

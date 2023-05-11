@@ -12,14 +12,15 @@ class SplashRepo {
   final SharedPreferences sharedPreferences;
   SplashRepo({required this.dioClient, required this.sharedPreferences});
 
-  Future<ApiResponse> getStoreList(StoreModelRequest storeModelRequest) async {
+  Future<ApiResponse> getConfig() async {
     try {
-      final response = await dioClient.post(AppConstants.STORES_URI, data: storeModelRequest.toJson());
+      final response = await dioClient.get(AppConstants.CONFIG_URI);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
 
   void initSharedData() async {
     if (!sharedPreferences.containsKey(AppConstants.CART_LIST)) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hr_app/utill/color_resources.dart';
 
 import '../../../utill/dimensions.dart';
 import '../../../utill/styles.dart';
@@ -80,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       width: double.infinity,
       decoration: BoxDecoration(
         border:widget.border? Border.all(width: 1, color: Theme.of(context).hintColor.withOpacity(.35)):null,
-        color: Theme.of(context).highlightColor,
+        color: Colors.blueGrey,
         borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL),
       ),
       child: TextFormField(
@@ -100,7 +101,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onFieldSubmitted: (v) {
           FocusScope.of(context).requestFocus(widget.nextNode);
         },
-
 
         validator: (input){
           if(input!.isEmpty){
