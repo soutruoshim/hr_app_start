@@ -4,6 +4,7 @@ import 'package:hr_app/data/model/body/store_model_request.dart';
 import 'package:hr_app/helper/user_login_info.dart';
 import 'package:hr_app/provider/product_provider.dart';
 import 'package:hr_app/provider/report_parse_provider.dart';
+import 'package:hr_app/utill/color_resources.dart';
 import 'package:hr_app/view/screen/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,6 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
     String data_enc = SecurityHelper.getDataEncryptionKey(dataTypes: [
       AppConstants.CSTORE_LIST,
     ], dev_kit: AppConstants.dev_kid);
+
     Provider.of<SplashProvider>(context, listen: false).initStores(
         context,
         StoreModelRequest(
@@ -143,6 +145,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorResources.MAIN_COLOR,
         body: Stack(
       clipBehavior: Clip.none,
       children: [
