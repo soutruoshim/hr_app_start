@@ -3,11 +3,10 @@ class AppConstants {
   static const String APP_VERSION = '1.0';
   static const String COMPANY_NAME = 'Brown';
 
-  static const String BASE_URL = 'https://gtest.www.browncoffee.com.kh';
-  //static const String BASE_URL = 'https://www.browncoffee.com.kh';
-  static const String STORES_URI = '/Client_API/V4/?access';
-  static const String CONFIG_URI = '/api/v1/config';
-  static const String LOGIN_URI = '/api/v3/seller/auth/login';
+  static const String BASE_URL = 'http://10.0.2.2:8000';
+  static const String CONFIG_URI = '/api/term-condition';
+  static const String LOGIN_URI = '/api/login';
+
   static const String FORGET_PASSWORD_URI = '/api/v3/seller/auth/forgot-password';
   static const String RESET_PASSWORD_URI = '/api/v3/seller/auth/reset-password';
   static const String VERIFY_OTP_URI = '/api/v3/seller/auth/verify-otp';

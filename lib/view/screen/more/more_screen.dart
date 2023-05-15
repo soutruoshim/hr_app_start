@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hr_app/view/screen/more/setting_list_item.dart';
 
 import 'package:hr_app/view/screen/more/size_config.dart';
+import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import 'package:flutter_share/flutter_share.dart';
 
+import '../../../provider/auth_provider.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
+import '../auth/auth_screen.dart';
 // import 'package:quran_cham/pages/about_page.dart';
 // import 'package:quran_cham/pages/contact_page.dart';
 // import 'package:quran_cham/pages/faq_page.dart';
@@ -241,7 +244,10 @@ class _MoreScreenState extends State<MoreScreen> with SingleTickerProviderStateM
             SettingsListItem(
               text: "Logout",
               arrow: true,
-              onTap: (){},
+              onTap: (){
+                Provider.of<AuthProvider>(context, listen: false).clearSharedData();
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => AuthScreen()), (route) => false);
+              },
               color: Colors.black,
             ),
           ],

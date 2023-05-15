@@ -56,10 +56,13 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     ApiResponse apiResponse = await authRepo.login(emailAddress: emailAddress, password: password);
 
+
+
     if (apiResponse.response != null && apiResponse.response?.statusCode == 200) {
       _isLoading = false;
       Map map = apiResponse.response?.data;
-      String token = map["token"];
+      String token = map["data"]["token"];
+      print(token);
       authRepo.saveUserToken(token);
 
     } else {

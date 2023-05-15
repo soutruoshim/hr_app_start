@@ -32,21 +32,26 @@ class _SplashScreenState extends State<SplashScreen> {
 
     super.initState();
     NetworkInfo.checkConnectivity(context);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (BuildContext context) => AuthScreen()));
-    // Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
-    //   if(isSuccess) {
-    //     Timer(Duration(seconds: 1), () {
-    //       if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
-    //         Provider.of<AuthProvider>(context, listen: false).updateToken(context);
-    //         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => LandingScreen()));
-    //       } else {
-    //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //             builder: (BuildContext context) => AuthScreen()));
-    //       }
-    //     });
-    //   }
+
+    // Timer(Duration(seconds: 5), (){
+    //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //       builder: (BuildContext context) => AuthScreen()));
     // });
+
+    Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
+      if(isSuccess) {
+        Timer(Duration(seconds: 1), () {
+          if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
+            Provider.of<AuthProvider>(context, listen: false).updateToken(context);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => LandingScreen()));
+          } else {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => AuthScreen()));
+          }
+        });
+      }
+    });
+
   }
 
   @override

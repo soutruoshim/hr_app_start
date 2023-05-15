@@ -19,7 +19,7 @@ class ProductRepo {
 
   Future<ApiResponse> getMenuList(MenuModelRequest menuModelRequest) async {
     try {
-      final response = await dioClient.post(AppConstants.STORES_URI, data: menuModelRequest.toJson());
+      final response = await dioClient.post(AppConstants.CONFIG_URI, data: menuModelRequest.toJson());
       //print(response);
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -30,7 +30,7 @@ class ProductRepo {
 
   Future<ApiResponse> changeStatusMenu(MenuModelStatusRequest menuModelStatusRequest) async {
     try {
-      final response = await dioClient.post(AppConstants.STORES_URI, data: menuModelStatusRequest.toJson());
+      final response = await dioClient.post(AppConstants.CONFIG_URI, data: menuModelStatusRequest.toJson());
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -39,7 +39,7 @@ class ProductRepo {
 
   Future<ApiResponse> changeStatusService(ServiceModelStatusRequest serviceModelStatusRequest) async {
     try {
-      final response = await dioClient.post(AppConstants.STORES_URI, data: serviceModelStatusRequest.toJson());
+      final response = await dioClient.post(AppConstants.CONFIG_URI, data: serviceModelStatusRequest.toJson());
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -51,7 +51,7 @@ class ProductRepo {
       print("======request change");
       print(orderModelStatusRequest.toJson());
 
-      final response = await dioClient.post(AppConstants.STORES_URI, data: orderModelStatusRequest.toJson());
+      final response = await dioClient.post(AppConstants.CONFIG_URI, data: orderModelStatusRequest.toJson());
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

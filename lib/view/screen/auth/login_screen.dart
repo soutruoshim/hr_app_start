@@ -14,14 +14,11 @@ import '../../base/custom_snackbar.dart';
 import '../../base/textfeild/custom_text_feild.dart';
 
 class SignInWidget extends StatefulWidget {
-  const SignInWidget({Key? key}) : super(key: key);
-
   @override
-  State<SignInWidget> createState() => _SignInWidgetState();
+  _SignInWidgetState createState() => _SignInWidgetState();
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
-
   FocusNode _emailFocus = FocusNode();
   FocusNode _passwordFocus = FocusNode();
   late TextEditingController _emailController;
@@ -30,14 +27,13 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _formKeyLogin = GlobalKey<FormState>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
-    _emailController.text = (Provider.of<AuthProvider>(context, listen: false).getUserEmail() ?? null)!;
-    _passwordController.text = (Provider.of<AuthProvider>(context, listen: false).getUserPassword() ?? null)!;
+    // _emailController.text = Provider.of<AuthProvider>(context, listen: false).getUserEmail() ?? null;
+    // _passwordController.text = Provider.of<AuthProvider>(context, listen: false).getUserPassword() ?? null;
   }
 
   @override
@@ -49,7 +45,9 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     Provider.of<AuthProvider>(context, listen: false).isActiveRememberMe;
+    print(Provider.of<AuthProvider>(context, listen: false).isActiveRememberMe);
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) => Form(
         key: _formKeyLogin,
@@ -63,12 +61,12 @@ class _SignInWidgetState extends State<SignInWidget> {
                     child: CustomTextField(
                       border: true,
                       prefixIconImage: Images.email_icon,
-                      hintText: "Email Address",
+                      hintText: "Enter email",
                       focusNode: _emailFocus,
                       nextNode: _passwordFocus,
                       textInputType: TextInputType.emailAddress,
                       controller: _emailController,
-                      textInputAction: TextInputAction.none,
+                      textInputAction: TextInputAction.next,
                       onChanged: (String text) {  },
                     )),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -93,10 +91,28 @@ class _SignInWidgetState extends State<SignInWidget> {
                       onTap: () => authProvider.toggleRememberMe(),
                       child: Row(
                         children: [
+                          Container(width: Dimensions.ICON_SIZE_DEFAULT, height: Dimensions.ICON_SIZE_DEFAULT,
+                            decoration: BoxDecoration(color: authProvider.isActiveRememberMe ?
+                            Theme.of(context).primaryColor : Theme.of(context).cardColor,
+                                border: Border.all(color:  authProvider.isActiveRememberMe ?
+                                Theme.of(context).primaryColor : Theme.of(context).hintColor.withOpacity(.5)),
+                                borderRadius: BorderRadius.circular(3)),
+                            child: authProvider.isActiveRememberMe ?
+                            Icon(Icons.done, color: ColorResources.WHITE,
+                                size: Dimensions.ICON_SIZE_SMALL) : SizedBox.shrink(),
+                          ),
+                          SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+
+                          Text("Remember me",
+                            style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                color: ColorResources.getHintColor(context)),
+                          ),
                           Spacer(),
+
+
                           InkWell(
-                            onTap: () => {},
-                            child: Text("Forgot Password",
+                            onTap: () {},
+                            child: Text("Forget Password",
                                 style: robotoRegular.copyWith(
                                     color: Theme.of(context).primaryColor, decoration: TextDecoration.underline)),
                           ),
@@ -109,8 +125,6 @@ class _SignInWidgetState extends State<SignInWidget> {
 
 
                 SizedBox(height: Dimensions.PADDING_SIZE_BUTTON),
-
-
                 !authProvider.isLoading ?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 70),
@@ -122,15 +136,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                       String _email = _emailController.text.trim();
                       String _password = _passwordController.text.trim();
                       if (_email.isEmpty) {
-                        showCustomSnackBar("Email Address", context);
+                        showCustomSnackBar("Enter email address", context);
                       }else if (EmailChecker.isNotValid(_email)) {
                         showCustomSnackBar("Enter valid email", context);
                       }else if (_password.isEmpty) {
-                        showCustomSnackBar("Password", context);
+                        showCustomSnackBar("Enter password", context);
                       }else if (_password.length < 6) {
-                        showCustomSnackBar("Password Should be", context);
+                        showCustomSnackBar("Password should be", context);
                       }else {authProvider.login(context, emailAddress: _email, password: _password).then((status) async {
-                        if (status.response?.statusCode == 200) {
+                        if (status.response!.statusCode == 200) {
                           if (authProvider.isActiveRememberMe) {
                             authProvider.saveUserNumberAndPassword(_email, _password);
                           } else {
@@ -144,12 +158,11 @@ class _SignInWidgetState extends State<SignInWidget> {
                   ),
                 ) :
                 Center( child: CircularProgressIndicator( valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-
                 )),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical:Dimensions.PADDING_SIZE_BOTTOM_SPACE),
-                  child: InkWell(
+                  child: GestureDetector(
                       onTap: (){},
                       child: Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -158,6 +171,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ],
                       )),
                 ),
+
               ],
             ),
           ),

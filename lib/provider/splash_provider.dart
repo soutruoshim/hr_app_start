@@ -60,7 +60,7 @@ class SplashProvider extends ChangeNotifier {
     ApiResponse apiResponse = await splashRepo.getConfig();
     bool isSuccess;
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
-      _storeModel = StoreModel.fromJson(apiResponse.response!.data);
+      //_storeModel = StoreModel.fromJson(apiResponse.response!.data);
       isSuccess = true;
     } else {
       isSuccess = false;
