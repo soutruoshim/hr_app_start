@@ -4,7 +4,7 @@ class AppConstants {
   static const String COMPANY_NAME = 'Brown';
 
   static const String BASE_URL = 'http://10.0.2.2:8000';
-  static const String CONFIG_URI = '/api/term-condition';
+  static const String CONFIG_URI = '/api/config';
   static const String LOGIN_URI = '/api/login';
 
   static const String FORGET_PASSWORD_URI = '/api/v3/seller/auth/forgot-password';

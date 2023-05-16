@@ -45,9 +45,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   @override
   Widget build(BuildContext context) {
     menuModels = context.watch<ProductProvider>().menuModelList;
-    List<Store>? storeList = Provider.of<SplashProvider>(context, listen: false)
-        .storeModelList
-        .result;
+    List<Store>? storeList = [];
     return Scaffold(
        backgroundColor: ColorResources.MAIN_COLOR,
         appBar: AppBar(
