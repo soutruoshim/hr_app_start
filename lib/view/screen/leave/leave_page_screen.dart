@@ -83,20 +83,20 @@ class _LeavePageScreenState extends State<LeavePageScreen> with SingleTickerProv
 
             OngoingOrderWidget(),
             //SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                Padding(
-                    padding: EdgeInsets.only(top: 0),
-                    child: Container(
-                      margin: EdgeInsets.only(right: 18, left: 18),
-                      child: Text(
-                        "Leave",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: ColorResources.WHITE
-                        ),
-                      ),
-                    )),
+            Padding(
+                padding: EdgeInsets.only(top: 0),
+                child: Container(
+                  margin: EdgeInsets.only(right: 18, left: 18),
+                  child: Text(
+                    "Leave",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: ColorResources.WHITE
+                    ),
+                  ),
+                )),
           ]
             ),
         )),
@@ -111,7 +111,6 @@ class _LeavePageScreenState extends State<LeavePageScreen> with SingleTickerProv
           delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return Container(
-
                     margin: index % 2 == 0 ? EdgeInsets.only(left: 16):EdgeInsets.only(right: 16),
                     child: LeaveItem(
                       //color: Color(0xFF7C5D00),

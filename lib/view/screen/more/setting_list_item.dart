@@ -20,7 +20,11 @@ class SettingsListItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        color: Colors.blueGrey[700],
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(16)
+        ),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -184,11 +184,12 @@ class _MoreScreenState extends State<MoreScreen> with SingleTickerProviderStateM
   _buttonsListContainer(BuildContext context, Widget body) {
     return Container(
       margin: EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 10.0),
+
       decoration: BoxDecoration(
         border: Border.all(
             color: Colors.blueGrey.shade700,
             width: 1.0),
-        color: Theme.of(context).cardColor,
+        color: Colors.blueGrey.shade700,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
